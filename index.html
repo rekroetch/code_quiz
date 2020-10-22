@@ -21,6 +21,69 @@
 
         }
 
+        #question {
+            padding: 20px 0;
+            font-size: 30px;
+        }
+
+        .btn-grid {
+            display: grid;
+            gap: 10px;
+            margin: 20px, 0;
+        }
+
+        .btn {
+            padding: 10px;
+            border: 1px, solid;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            border-color: black;
+            border: 2px, solid;
+            background-color: #333;
+            color:#fff;
+        }
+
+        #start-btn {
+            font-size: 50px;
+            padding: 20px;
+        }
+
+        #start {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .hide {
+            display: none;
+        }
+
+        #timer {
+            text-align: end;
+            font-size: 30px;
+            color: darkred;
+            
+        }
+
+        /* #alert {
+            background: #666;
+            color: #fff;
+            text-align: center;
+            margin: 10px 0;
+
+        }
+
+        #answers {
+            background-color: #9fc1ee;
+            line-height: 2;
+            text-align:center;
+            
+        } */
+
     </style>
 </head>
 <body>
@@ -29,14 +92,31 @@
     </header>
 
     <div class="container">
-        <h2 id = "questions">Questions will go here.</h2>
-        <ul id = "answers">
-        </ul>
+        <div id="question-container" class="hide">
+            <div id="timer">timer</div>
+            <div id="question">Question</div>
+            <div id="answer-btns" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <br>
+        <div id="start">
+            <button id="start-btn" class="start-btn btn">Start</button>
+        </div>
+        
     </div>
 
 
-    <!-- <h2 id = "questions"></h2>
-    <div class = "answers"></div> -->
+    <!-- <h2 id = "questions">Questions will go here.</h2>
+    <div id="alert"></div>
+    <div id = "answers">
+        <div id="realanswer"></div>
+        <div id="fakeanswers"></div>
+        <br></br>
+    </div> -->
     
 
     <script src="./script.js"></script>
