@@ -4,11 +4,11 @@ var questionEl = document.querySelector('#question')
 var answerEl = document.querySelector('#answer-btns')
 var timeEl = document.querySelector('#timer')
 var finalScore = document.querySelector('#score')
-var user = document.querySelector('#user')
+// var user = document.querySelector('#user')
 
 var score = 0
 
-let currentQuestion = {}
+let currentQuestion = 0
 let availableQuestions = []
 
 let secondsLeft = 60;
@@ -27,8 +27,8 @@ let questions = [
     {
         question: "second question",
         answers: [
-            {ans: 'answer 2', correct: true},
             {ans: 'answer', correct: false},
+            {ans: 'answer 2', correct: true},
             {ans: 'answer', correct: false},
             {ans: 'answer', correct: false},
         ]
@@ -36,19 +36,19 @@ let questions = [
     {
         question: "third question",
         answers: [
+            {ans: 'answer', correct: false},
+            {ans: 'answer', correct: false},
             {ans: 'answer 3', correct: true},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
             {ans: 'answer', correct: false},
         ]
     },
     {
         question: "fourth question",
         answers: [
+            {ans: 'answer', correct: false},
+            {ans: 'answer', correct: false},
+            {ans: 'answer', correct: false},
             {ans: 'answer 4', correct: true},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
         ]
     }
 ]
@@ -88,8 +88,8 @@ function nextQuestion() {
         questionCont.classList.add('hide')
         finalScore.classList.remove('hide')
         finalScore.textContent = `Final Score: ${score}`
-        var person = document.createElement('input')
-        user.appendChild(person)
+        // var person = document.createElement('input')
+        // user.appendChild(person)
 
         // display to screen with input for name
     }
@@ -102,12 +102,12 @@ function nextQuestion() {
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansBtn = document.createElement('button')
         answerEl.appendChild(ansBtn)
-        ansBtn.innerText = currentQuestion.answers.ans
+        ansBtn.innerHTML = currentQuestion.answers[i].ans
         ansBtn.classList.add('btn')
         ansBtn.addEventListener('click', clickAnswer)
         
-        
-        if (currentQuestion.answers.correct) {
+
+        if (currentQuestion.answers[i].correct) {
             console.log('true')
         } else {
             console.log('false')
