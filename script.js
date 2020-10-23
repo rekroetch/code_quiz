@@ -3,8 +3,11 @@ var questionCont = document.querySelector("#question-container")
 var questionEl = document.querySelector('#question')
 var answerEl = document.querySelector('#answer-btns')
 var timeEl = document.querySelector('#timer')
+var scorePage = document.querySelector('#scorePage')
 var finalScore = document.querySelector('#score')
-// var user = document.querySelector('#user')
+var initials = document.querySelector('#initials')
+var submit = document.querySelector('#submit')
+var prevScores = document.querySelector('#prevScores')
 
 var score = 0
 
@@ -13,7 +16,7 @@ let availableQuestions = []
 
 let secondsLeft = 60;
 
-
+// MIGHT NOT NEED THE 'correct:' ANYMORE
 let questions = [
     {
         question: "first question",
@@ -75,47 +78,62 @@ function timer() {
       clearInterval(timerInterval);
       console.log("timed out")
     }
-
-  }, 1000);
+    
+}, 1000);
 }
 
 
 function nextQuestion() {
     reset()
-
+    
     if (availableQuestions.length === 0 || secondsLeft === 0) {
         localStorage.setItem('Score', score)
         questionCont.classList.add('hide')
-        finalScore.classList.remove('hide')
+        scorePage.classList.remove('hide')
         finalScore.textContent = `Final Score: ${score}`
-        // var person = document.createElement('input')
-        // user.appendChild(person)
+        submit.addEventListener('click', function(event) {
+            event.preventDefault()
+            localStorage.setItem('initials', initials.value)
+        })
 
-        // display to screen with input for name
+        // prevScores.textContent = `${initials.value} | ${score}`
+        console.log(initials.value)
+
+        var newScore = document.createElement('li')
+        newScore.setAttribute('style','list-style-type: none')
+        prevScores.appendChild(newScore)
+
+        var savedInitial = localStorage.getItem('initials')
+
+        newScore.textContent = `${savedInitial} | ${score}`
+        
     }
-
+    
     var questionsIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
-
+    
     questionEl.textContent = currentQuestion.question
-
+    
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansBtn = document.createElement('button')
         answerEl.appendChild(ansBtn)
-        ansBtn.innerHTML = currentQuestion.answers[i].ans
+        ansBtn.textContent = currentQuestion.answers[i].ans
         ansBtn.classList.add('btn')
         ansBtn.addEventListener('click', clickAnswer)
         
-
+        
         if (currentQuestion.answers[i].correct) {
             console.log('true')
         } else {
             console.log('false')
         }
+        
     }
     
     availableQuestions.splice(questionsIndex, 1)
+    
 }
+
 
 
 
@@ -125,17 +143,19 @@ function reset() {
     }
 }
 
-
 function clickAnswer(event) {
-    var clickedBtn = event.target
+    let clickedBtn = event.target
+    // clickedBtn = currentQuestion.answers.correct
     
      
-    if (clickedBtn = currentQuestion.answers.correct) {
+    if (clickedBtn.textContent === 'answer 1' || 'answer 2' || 'answer 3' || 'answer 4') {
         score++
+        console.log('right')
     } else {
-        console.log('false')
+        console.log('wrong')
         secondsLeft = secondsLeft - 10
     }
     console.log(score)
     nextQuestion()
 }
+

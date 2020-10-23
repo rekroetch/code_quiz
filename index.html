@@ -75,6 +75,10 @@
 
         }
 
+        h3 {
+            text-align: center;
+        }
+
 
     </style>
 </head>
@@ -98,8 +102,17 @@
         <div id="start">
             <button id="start-btn" class="start-btn btn">Start</button>
         </div>
-        <form id="score" class="hide">
-            <input id="user" type="text" placeholder="Name">
+        <form id="scorePage" class="hide">
+            <h2 id='score'></h2>
+            <label for="Initials">Your Initials:</label>
+            <input type="text" id="initials" name="initials"><br><br>
+            <input type="submit" value="Save" id='submit'>
+            <!-- <input  type="text" placeholder="Initials" id="initials"> -->
+            <hr>
+            <div>
+                <h3>Previous Scores</h3>
+                <ul id='prevScores'></ul>
+            </div>
         </form>
         
     </div>
