@@ -69,20 +69,12 @@
             
         }
 
-        /* #alert {
-            background: #666;
-            color: #fff;
+        #score {
             text-align: center;
-            margin: 10px 0;
+            font-size: 40px;
 
         }
 
-        #answers {
-            background-color: #9fc1ee;
-            line-height: 2;
-            text-align:center;
-            
-        } */
 
     </style>
 </head>
@@ -93,30 +85,26 @@
 
     <div class="container">
         <div id="question-container" class="hide">
-            <div id="timer">timer</div>
+            <div id="timer">60</div>
             <div id="question">Question</div>
             <div id="answer-btns" class="btn-grid">
-                <button class="btn">Answer 1</button>
+                <!-- <button class="btn">Answer 1</button>
                 <button class="btn">Answer 2</button>
                 <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+                <button class="btn">Answer 4</button> -->
             </div>
         </div>
         <br>
         <div id="start">
             <button id="start-btn" class="start-btn btn">Start</button>
         </div>
+        <form id="score" class="hide">
+            <input id="user" type="text" placeholder="Name">
+        </form>
         
     </div>
 
 
-    <!-- <h2 id = "questions">Questions will go here.</h2>
-    <div id="alert"></div>
-    <div id = "answers">
-        <div id="realanswer"></div>
-        <div id="fakeanswers"></div>
-        <br></br>
-    </div> -->
     
 
     <script src="./script.js"></script>
