@@ -14,46 +14,63 @@ var score = 0
 let currentQuestion = 0
 let availableQuestions = []
 
-let secondsLeft = 60;
+let secondsLeft = 45;
 
-// MIGHT NOT NEED THE 'correct:' ANYMORE
 let questions = [
     {
-        question: "first question",
+        question: "Which HTML tag can JavaScript be written in?",
         answers: [
-            {ans: 'answer 1', correct: true},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
+            '<script>',
+            '<javascript>',
+            '<js>',
+            '<style>',
         ]
     },
     {
-        question: "second question",
+        question: "Bootstrap is to CSS as _____ is to JavaScript.",
         answers: [
-            {ans: 'answer', correct: false},
-            {ans: 'answer 2', correct: true},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
+            'java',
+            'jQuery',
+            'script',
+            'html',
         ]
     },
     {
-        question: "third question",
+        question: "Array values are placed inside which of the following?",
         answers: [
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
-            {ans: 'answer 3', correct: true},
-            {ans: 'answer', correct: false},
+            '( )',
+            '{ }',
+            '[ ]',
+            '< >',
         ]
     },
     {
-        question: "fourth question",
+        question: "DOM stands for _____.",
         answers: [
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
-            {ans: 'answer', correct: false},
-            {ans: 'answer 4', correct: true},
+            'Drunk On Monday',
+            'Data Object Mode',
+            'Data Or Media',
+            'Document Object Model',
         ]
-    }
+    },
+    {
+        question: "Which would you use if you wanted to ask the user to type in their age?",
+        answers: [
+            'alert()',
+            'prompt()',
+            'console.log()',
+            'confirm()',
+        ]
+    },
+    {
+        question: "Which is an example of a boolean?",
+        answers: [
+            '7',
+            'That cow is fat',
+            'true',
+            '18 cherries',
+        ]
+    },
 ]
 
 startBtn.addEventListener('click', startQuiz)
@@ -71,15 +88,15 @@ function timer() {
     console.log("started timer")
 
   var timerInterval = setInterval(function() {
-    secondsLeft--;
-    timeEl.textContent = secondsLeft;
+        secondsLeft--;
+        timeEl.textContent = secondsLeft;
 
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      console.log("timed out")
-    }
+        if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        console.log("timed out")
+        }
     
-}, 1000);
+    }, 1000);
 }
 
 
@@ -102,11 +119,7 @@ function nextQuestion() {
     
             newScore.textContent = `${savedInitial} | ${score}`
         })
-
-        // prevScores.textContent = `${initials.value} | ${score}`
-        console.log(initials.value)
-
-        
+       
     }
     
     var questionsIndex = Math.floor(Math.random() * availableQuestions.length)
@@ -117,17 +130,10 @@ function nextQuestion() {
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansBtn = document.createElement('button')
         answerEl.appendChild(ansBtn)
-        ansBtn.textContent = currentQuestion.answers[i].ans
+        ansBtn.textContent = currentQuestion.answers[i]
         ansBtn.classList.add('btn')
         ansBtn.addEventListener('click', clickAnswer)
-        
-        
-        if (currentQuestion.answers[i].correct) {
-            console.log('true')
-        } else {
-            console.log('false')
-        }
-        
+          
     }
     
     availableQuestions.splice(questionsIndex, 1)
@@ -145,19 +151,23 @@ function reset() {
 
 function clickAnswer(event) {
     let clickedBtn = event.target
-    // clickedBtn = currentQuestion.answers.correct
-    
      
-    if (clickedBtn.textContent === 'answer 1') {
+    if (clickedBtn.textContent === '<script>') {
         score++
         console.log('right')
-    } else if (clickedBtn.textContent === 'answer 2') {
+    } else if (clickedBtn.textContent === 'jQuery') {
         score++
         console.log('right')
-    } else if (clickedBtn.textContent === 'answer 3') {
+    } else if (clickedBtn.textContent === '[ ]') {
         score++
         console.log('right')
-    } else if (clickedBtn.textContent === 'answer 4') {
+    } else if (clickedBtn.textContent === 'Document Object Model') {
+        score++
+        console.log('right')
+    } else if (clickedBtn.textContent === 'prompt()') {
+        score++
+        console.log('right')
+    } else if (clickedBtn.textContent === 'true') {
         score++
         console.log('right')
     } else {
