@@ -94,18 +94,18 @@ function nextQuestion() {
         submit.addEventListener('click', function(event) {
             event.preventDefault()
             localStorage.setItem('initials', initials.value)
+            var newScore = document.createElement('li')
+            newScore.setAttribute('style','list-style-type: none')
+            prevScores.appendChild(newScore)
+    
+            var savedInitial = localStorage.getItem('initials')
+    
+            newScore.textContent = `${savedInitial} | ${score}`
         })
 
         // prevScores.textContent = `${initials.value} | ${score}`
         console.log(initials.value)
 
-        var newScore = document.createElement('li')
-        newScore.setAttribute('style','list-style-type: none')
-        prevScores.appendChild(newScore)
-
-        var savedInitial = localStorage.getItem('initials')
-
-        newScore.textContent = `${savedInitial} | ${score}`
         
     }
     
@@ -148,7 +148,16 @@ function clickAnswer(event) {
     // clickedBtn = currentQuestion.answers.correct
     
      
-    if (clickedBtn.textContent === 'answer 1' || 'answer 2' || 'answer 3' || 'answer 4') {
+    if (clickedBtn.textContent === 'answer 1') {
+        score++
+        console.log('right')
+    } else if (clickedBtn.textContent === 'answer 2') {
+        score++
+        console.log('right')
+    } else if (clickedBtn.textContent === 'answer 3') {
+        score++
+        console.log('right')
+    } else if (clickedBtn.textContent === 'answer 4') {
         score++
         console.log('right')
     } else {
@@ -157,5 +166,6 @@ function clickAnswer(event) {
     }
     console.log(score)
     nextQuestion()
+
 }
 
