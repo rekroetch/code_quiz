@@ -9,13 +9,16 @@ var initials = document.querySelector('#initials')
 var submit = document.querySelector('#submit')
 var prevScores = document.querySelector('#prevScores')
 
+// Score starts at 0
 var score = 0
 
 let currentQuestion = 0
 let availableQuestions = []
 
+// Total time is 45 seconds
 let secondsLeft = 45;
 
+// List of questions and answers
 let questions = [
     {
         question: "Which HTML tag can JavaScript be written in?",
@@ -73,8 +76,10 @@ let questions = [
     },
 ]
 
+// Clicking the start button starts the quiz
 startBtn.addEventListener('click', startQuiz)
 
+// Starting the quiz starts the timer and presents the first question
 function startQuiz() {
     startBtn.classList.add('hide')
     questionCont.classList.remove('hide')
@@ -84,6 +89,7 @@ function startQuiz() {
     
 }
 
+// Timer counts down every 1 second
 function timer() {
     console.log("started timer")
 
@@ -99,10 +105,11 @@ function timer() {
     }, 1000);
 }
 
-
+// Presenting the next question resets the answer field
 function nextQuestion() {
     reset()
     
+    // Shows Final Score page and saves initials
     if (availableQuestions.length === 0 || secondsLeft === 0) {
         localStorage.setItem('Score', score)
         questionCont.classList.add('hide')
@@ -121,12 +128,13 @@ function nextQuestion() {
         })
        
     }
-    
+    // Displays the questions in a random order
     var questionsIndex = Math.floor(Math.random() * availableQuestions.length)
     currentQuestion = availableQuestions[questionsIndex]
     
     questionEl.textContent = currentQuestion.question
     
+    // Generates the answer buttons
     for (i = 0; i < currentQuestion.answers.length; i++) {
         var ansBtn = document.createElement('button')
         answerEl.appendChild(ansBtn)
@@ -136,22 +144,25 @@ function nextQuestion() {
           
     }
     
+    // Prevents the question just diplayed from being asked again
     availableQuestions.splice(questionsIndex, 1)
     
 }
 
 
-
-
+// Removes the previous answer buttons
 function reset() {
     while (answerEl.firstChild) {
         answerEl.removeChild(answerEl.firstChild)
     }
 }
 
+// When an answer is clicked, the next question is presented
 function clickAnswer(event) {
     let clickedBtn = event.target
-     
+    
+    // If the correct answer is clicked, score increases by 1
+    // If the wrong answer is clicked, time decreases by 10 seconds
     if (clickedBtn.textContent === '<script>') {
         score++
         console.log('right')
